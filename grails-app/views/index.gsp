@@ -9,8 +9,8 @@
 				border: .2em solid #fff;
 				margin: 2em 2em 1em;
 				padding: 1em;
-				width: 12em;
-				float: left;
+				/*width: 20em;*/
+				float: inside;
 				-moz-box-shadow: 0px 0px 1.25em #ccc;
 				-webkit-box-shadow: 0px 0px 1.25em #ccc;
 				box-shadow: 0px 0px 1.25em #ccc;
@@ -101,8 +101,8 @@
 					%{--<li>${plugin.name} - ${plugin.version}</li>--}%
 				%{--</g:each>--}%
 			%{--</ul>--}%
-			<h1>Welcome to Gloogle Books</h1>
-			<p>Hi: Here you can find a lot of books, good look, and enjoy. :)</p>
+			<h1>Welcome to <g:link style="text-decoration: none; font-weight: bold; text-align: center" controller="user">Gloogle Books</g:link></h1>
+			<p>Hi, here you can find a lot of books, good look, and enjoy :)</p>
 			<br>
 
 			%{--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--}%
@@ -110,9 +110,7 @@
 
 		</div>
 		<div id="page-body" role="main">
-			<g:link controller="user">Users</g:link>
-			<br>
-			<br>
+
 			%{--<g:link controller="book">Books</g:link>--}%
 
 

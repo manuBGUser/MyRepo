@@ -2,14 +2,14 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'books', 'error')} ">
-	<label for="books">
-		<g:message code="user.books.label" default="Books" />
-		
-	</label>
-	<g:select name="books" from="${googlebookswishlistproject.Book.list()}" multiple="multiple" optionKey="id" size="5" value="${userInstance?.books*.id}" class="many-to-many"/>
+%{--<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'books', 'error')} ">--}%
+	%{--<label for="books">--}%
+		%{--<g:message code="user.books.label" default="Books" />--}%
+		%{----}%
+	%{--</label>--}%
+	%{--<g:select name="books" from="${googlebookswishlistproject.Book.list()}" multiple="multiple" optionKey="id" size="5" value="${userInstance?.books*.id}" class="many-to-many"/>--}%
 
-</div>
+%{--</div>--}%
 
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'firstName', 'error')} required">
 	<label for="firstName">

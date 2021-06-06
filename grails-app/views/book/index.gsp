@@ -14,16 +14,13 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message />Home</a></li>
-				<li><g:link class="create" controller="user" action="index"><g:message />User List</g:link></li>
+				<li><g:link class="create" controller="user" action="wishList" params="[userId: user]"><g:message />User Wish List</g:link></li>
 			</ul>
 		</div>
 		<div id="list-book" class="content scaffold-list" role="main">
 			<h1><g:message />Book List</h1>
-            <h1>Make a search</h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <fieldset class="form">
+            %{--<h1>Make a search</h1>--}%
+            <fieldset style="text-align: left" class="form">
                 <g:form controller="book" action="search" method="POST" params="${[user: user]}">
                     <div class="fieldcontain">
                         <label for="query">Search for books:</label>
@@ -65,7 +62,14 @@
 
                             <td>${listt.getVolumeInfo().getTitle()}</td>
 
-                            <td>${listt.getVolumeInfo().getAuthors()}</td>
+                            <g:if test="${listt.getVolumeInfo().getAuthors() != null}">
+                                <td>${listt.getVolumeInfo().getAuthors().join(", ")}</td>
+                            </g:if>
+                            <g:elseif test="${listt.getVolumeInfo().getAuthors() == null}">
+                                <td></td>
+                            </g:elseif>
+
+
 
                             <td>
                                 <fieldset class="form">
@@ -85,7 +89,13 @@
 
                             <td>${listt.getVolumeInfo().getTitle()}</td>
 
-                            <td>${listt.getVolumeInfo().getAuthors()}</td>
+                            <g:if test="${listt.getVolumeInfo().getAuthors() != null}">
+                                <td>${listt.getVolumeInfo().getAuthors().join(", ")}</td>
+                            </g:if>
+                            <g:elseif test="${listt.getVolumeInfo().getAuthors() == null}">
+                                <td></td>
+                            </g:elseif>
+
 
                             <td>
                                 <fieldset class="form">

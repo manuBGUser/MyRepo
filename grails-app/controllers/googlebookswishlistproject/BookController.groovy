@@ -16,7 +16,7 @@ class BookController {
         params.max = Math.min(max ?: 10, 100)
         Books.Volumes.List books = googleBooksService.search(" ")
         Volumes volumes = books.execute()
-        [view: 'index', list: volumes.getItems(), user: params.userId]//falta el count que no funcionaba
+        [view: 'index', list: volumes.getItems(), user: params.userId]
     }
 
     def search(Integer max) {
@@ -24,12 +24,12 @@ class BookController {
         if (params.query != null && params.query != " ") {
             Books.Volumes.List books = googleBooksService.search(params.query)
             Volumes volumes = books.execute()
-            render(view: "index", model: [ list: volumes.getItems(), query: params.query, user: params.user])//falta el count que no funcionaba
+            render(view: "index", model: [ list: volumes.getItems(), query: params.query, user: params.user])
         }
         else{
             Books.Volumes.List books = googleBooksService.search(" ")
             Volumes volumes = books.execute()
-            render(view: "index", list: volumes.getItems())//falta el count que no funcionaba, si no hay criterio de busqueda mandar un texto que diga (no se encontraron resultados)
+            render(view: "index", model: [ list: volumes.getItems(), user: params.user])
         }
     }
 
@@ -122,7 +122,6 @@ class BookController {
 
     def addBookToUser(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        println(params.user)
         if (params.user != null && params.bookId !=null && params.bookTitle != null){
             Book bookInstance = new Book()
             bookInstance.setBookId(params.bookId)
@@ -144,10 +143,7 @@ class BookController {
             for (int i = 0; i < User.get(params.userId).getBooks().size(); i++) {
 
                 if (User.get(params.userId).getBooks()[i].id == params.bookId as Integer){
-                    println(params.bookId + "--" + User.get(params.userId).getBooks()[i].id)
-
                     User.get(params.userId).removeFromBooks(User.get(params.userId).getBooks()[i])
-//                    getBooks()[i].delete()
                     User.get(params.userId).save(flush: true)
                 }
             }
